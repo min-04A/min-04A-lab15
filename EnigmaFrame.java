@@ -21,7 +21,7 @@ public class EnigmaFrame extends JFrame
         setLayout(new BorderLayout()); // set layout of panel
 
         // Create top panel with flow layout and add GUI elements
-        JPanel topPanel = new JPanel(new GridLayout(1, 10, 5, 5));
+        JPanel topPanel = new JPanel(new GridLayout(1, 10, 20, 5));
 
         // Need getRotorNumbers to make users to choose three rotors
         innerRotor = new JComboBox<>(getRotorNumbers());
@@ -78,10 +78,14 @@ public class EnigmaFrame extends JFrame
             }
         });
 
-        setVisible(true);
-
         add(topPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
+
+        setVisible(true);
+
+        // Couldn't see because it was all white
+        topPanel.setBackground(Color.GRAY);
+        centerPanel.setBackground(Color.LIGHT_GRAY);
     }
 
     // Give 5 numbers for users to choose
