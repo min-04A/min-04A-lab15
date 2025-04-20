@@ -65,12 +65,49 @@ public class EnigmaFrame extends JFrame
         centerPanel.add(inputPanel);
         centerPanel.add(outputPanel);
 
-        
+        // Add eventlistener for button
+        encryptButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                processCode(true);
+            }
+        });
+
+        decryptButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                processCode(false);
+            }
+        });
+
+        setVisible(true);
+
+        add(topPanel, BorderLayout.NORTH);
+        add(centerPanel, BorderLayout.CENTER);
     }
 
     // Give 5 numbers for users to choose
     private Integer[] getRotorNumbers() 
     {
         return new Integer[]{1, 2, 3, 4, 5};
+    }
+
+    private void processCode(boolean encrypt) 
+    {
+        int inner = (int) innerRotor.getSelectedItem();
+        int middle = (int) midRotor.getSelectedItem();
+        int outer = (int) outerRotor.getSelectedItem();
+        String init = initialPosition.getText().toUpperCase();
+
+        Enigma enigma = new Enigma(inner, middle, outer, init);
+        String input = inArea.getText();
+        String output;
+        if(encrypt)
+        {
+            output = enigma.encrypt(input);
+        }
+        else
+        {
+            output = enigma.decrypt(input);
+        }
+        outArea.setText(output);
     }
 }
