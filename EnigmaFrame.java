@@ -21,7 +21,7 @@ public class EnigmaFrame extends JFrame
         setLayout(new BorderLayout()); // set layout of panel
 
         // Create top panel with flow layout and add GUI elements
-        JPanel topPanel = new JPanel(new FlowLayout()); 
+        JPanel topPanel = new JPanel(new GridLayout(1, 10, 5, 5));
 
         // Need getRotorNumbers to make users to choose three rotors
         innerRotor = new JComboBox<>(getRotorNumbers());
@@ -40,6 +40,32 @@ public class EnigmaFrame extends JFrame
         topPanel.add(outerRotor);
         topPanel.add(new JLabel("Initial Positions"));
         topPanel.add(initialPosition);
+        encryptButton = new JButton("Encrypt");
+        topPanel.add(encryptButton);
+        decryptButton = new JButton("Decrypt");
+        topPanel.add(decryptButton);
+
+        // Create center panel
+        JPanel centerPanel = new JPanel(new GridLayout(2, 1));
+        
+        // Panel for input
+        JPanel inputPanel = new JPanel(new BorderLayout());
+        inputPanel.add(new JLabel("Input"), BorderLayout.WEST);
+        inArea = new JTextArea(4, 40);
+        inputPanel.add(new JScrollPane(inArea), BorderLayout.CENTER);
+
+        // Panel for output 
+        JPanel outputPanel = new JPanel(new BorderLayout());
+        outputPanel.add(new JLabel("Output"), BorderLayout.WEST);
+        outArea = new JTextArea(4, 40);
+        outArea.setEditable(false);
+        outputPanel.add(new JScrollPane(outArea), BorderLayout.CENTER);
+
+        // Add input and output panels
+        centerPanel.add(inputPanel);
+        centerPanel.add(outputPanel);
+
+        
     }
 
     // Give 5 numbers for users to choose
