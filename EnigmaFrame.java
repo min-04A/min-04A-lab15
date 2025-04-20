@@ -15,7 +15,10 @@ public class EnigmaFrame extends JFrame
 
     public EnigmaFrame()
     {
-
+        setTitle("Enigma GUI"); // set title
+        setSize(1200, 400); // set size of frame
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // available to close window
+        setLayout(new BorderLayout()); // set layout of panel
 
     }
 }
